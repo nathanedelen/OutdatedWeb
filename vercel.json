@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/analysis/worker",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/admin/cleanup",
+      "schedule": "0 3 * * *"
+    }
+  ]
+}
