@@ -48,6 +48,11 @@ export async function middleware(request: NextRequest) {
   return response
 }
 
+// Only run on page routes. API routes create their own Supabase client, and
+// static assets don't need a session, so skipping them avoids an auth round
+// trip (and database load) on every API call, image, and file request.
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api/|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|css|js|map|txt|xml|json|woff|woff2|ttf)$).*)",
+  ],
 }
